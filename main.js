@@ -27,7 +27,6 @@ class Field {
     }
 
     moveCharacter(dir, charPos){
-
         if(dir === 'u' && charPos[0] === 0){
             console.log('Invalid instructions');
             return;
@@ -64,14 +63,46 @@ class Field {
             this._field[charPos[0]][charPos[1] + 1] = '*';
             return;
         }
+        else if((dir === 'u') && (this._field[charPos[0] -1][charPos[1]] === 'O')){
+            this.hole();
+        }
+        else if((dir === 'd') && (this._field[charPos[0] +1][charPos[1]] === 'O')){
+            this.hole();
+        }
+        else if((dir === 'l') && (this._field[charPos[0]][charPos[1] - 1] === 'O')){
+            this.hole();
+        }
+        else if((dir === 'r') && (this._field[charPos[0]][charPos[1] + 1] === 'O')){
+            this.hole();
+        }
+        else if((dir === 'u') && (this._field[charPos[0] -1][charPos[1]] === '^')){
+            this.hat();
+        }
+        else if((dir === 'd') && (this._field[charPos[0] +1][charPos[1]] === '^')){
+            this.hat();
+        }
+        else if((dir === 'l') && (this._field[charPos[0]][charPos[1] - 1] === '^')){
+            this.hat();
+        }
+        else if((dir === 'r') && (this._field[charPos[0]][charPos[1] + 1] === '^')){
+            this.hat();
+        }
+        else {
+            {
+                console.log('Please use u, l, d, or r');
+                return;
+            }
+        }
     }
 
     hat(){
-
+        console.log('You found your hat! Yay!');
+        game = false;
     }
 
     hole(){
-
+        console.log('You fell in a hole! Oops.');
+        game = false;
     }
 
     runGame(){
